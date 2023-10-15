@@ -1,4 +1,4 @@
 class User < ApplicationRecord
-    has_many :transactionDetails
-    has_many :categories
+    has_many :transaction_details, dependent: :destroy
+    has_many :categories, dependent: :destroy
 end
