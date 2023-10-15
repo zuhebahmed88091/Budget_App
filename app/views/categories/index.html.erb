@@ -1,0 +1,20 @@
+<h1>Categories</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Icon</th>
+      <th>Total Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.name %></td>
+        <td><%= raw category.icon %></td>
+        <td><%= category.amount %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to "Add a new category", new_category_path %>
