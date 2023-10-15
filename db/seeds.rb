@@ -13,5 +13,6 @@ category1 = Category.create(name: 'Category 1', icon: 'icon1', amount: 500.0, us
 category2 = Category.create(name: 'Category 2', icon: 'icon2', amount: 300.0, user: user2)
 
 # Create category details to associate transactions with categories
-CategoryDetail.create(category: category1, transaction_detail: transaction1)
-CategoryDetail.create(category: category2, transaction_detail: transaction2)
+# CategoryDetail.create(category: category1, transaction_detail: transaction1)
+# CategoryDetail.create(category: category2, transaction_detail: transaction2)
+category1.transaction_details << transaction1
