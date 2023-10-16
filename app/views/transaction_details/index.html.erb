@@ -1,0 +1,33 @@
+<h1>Transactions</h1>
+
+<% if @category.present? %>
+  <h2>Category: <%= @category.name %></h2>
+  <p>Total Amount: <%= number_to_currency(@total_amount) %></p>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Amount</th>
+      <th>Created At</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @transaction_details.each do |transaction_detail| %>
+      <tr>
+        <td><%= transaction_detail.name %></td>
+        <td><%= number_to_currency(transaction_detail.amount) %></td>
+        <td><%= transaction_detail.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if @category.present? %>
+  <div class="p-2 d-flex justify-content-center" style="background-color:#5fb523">
+    <%= link_to "Add a new transaction", new_category_transaction_detail_path(@category), class: "btn btn-outline-primary" %>
+    <%= link_to "Back to Categories", categories_path, class: "btn btn-outline-primary" %>
+  </div>
+<% end %>
+
