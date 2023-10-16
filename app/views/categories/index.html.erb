@@ -2,17 +2,18 @@
 <table>
   <thead>
     <tr>
-      <th>Name</th>
       <th>Icon</th>
+      <th>Name</th>
       <th>Total Amount</th>
     </tr>
   </thead>
   <tbody>
     <% @categories.each do |category| %>
       <tr>
-        <td><%= category.name %></td>
         <td><%= raw category.icon %></td>
+        <td><%= link_to category.name, category_transaction_details_path(category) %></td>
         <td><%= category.amount %></td>
+        <td><%= category.transaction_details.sum(:amount) %></td>
       </tr>
     <% end %>
   </tbody>
