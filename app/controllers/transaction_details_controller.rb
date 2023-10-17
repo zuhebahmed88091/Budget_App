@@ -14,11 +14,16 @@ class TransactionDetailsController < ApplicationController
   def new
     @transaction_detail = TransactionDetail.new
     @category = Category.find(params[:category_id])
+    @categories = current_user.categories.all
   end
 
   def create
-    @category = current_user.categories.find(params[:category_id])
-    @transaction_detail = current_user.transaction_details.build(transaction_detail_params)
+    category_params = params[:transaction_detail][:category]
+    name = params[:transaction_detail][:name]
+    amount = params[:transaction_detail][:amount]
+
+    @category = Category.find_by(name: category_params)
+    @transaction_detail = current_user.transaction_details.build(name:, amount:)
     @category.transaction_details << @transaction_detail
     if @category.save
       redirect_to category_transaction_details_path(@category)
@@ -30,6 +35,6 @@ class TransactionDetailsController < ApplicationController
   private
 
   def transaction_detail_params
-    params.require(:transaction_detail).permit(:name, :amount, :category_id, :author_id)
+    params.require(:transaction_detail).permit(:name, :amount).merge(category: params[:transaction_detail][:category])
   end
 end

@@ -1,33 +1,64 @@
-<h1>Transactions</h1>
+<div style="background-color: #e4ecf7">
+  <div class="d-flex flex-row-reverse bd-highlight" style="background-color: #3778c2">
+    <div class="p-3 bd-highlight" style="color: #9cb8db">Most ancient</div>
+    <div class="p-3 bd-highlight" style="color: #c1d2e8">Most recent</div>
+  </div>
+  <div class="d-flex flex-row-reverse bd-highlight bg-white">
+    <div class="p-2 bd-highlight">$00.0</div>
+    <div class="p-2 bd-highlight">Gift credit</div>
+  </div>
+  <br/>
+  <div class="d-flex align-items-center">
+    <% if @category.present? %>
+        <div class="pb-2" style="margin-left: 0.5rem;">
+          <%= raw @category.icon %>
+        </div>
+        <div class="ms-3">
+          <h5 style="font-weight: bold;"><%= @category.name %></h5>
+        </div>
+      <% end %>
+  </div>
 
-<% if @category.present? %>
-  <h2>Category: <%= @category.name %></h2>
-  <p>Total Amount: <%= number_to_currency(@total_amount) %></p>
-<% end %>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Amount</th>
-      <th>Created At</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @transaction_details.each do |transaction_detail| %>
+  <div class="table-responsive">
+  <table class="table table-bordered table-striped">
+    <thead>
       <tr>
-        <td><%= transaction_detail.name %></td>
-        <td><%= number_to_currency(transaction_detail.amount) %></td>
-        <td><%= transaction_detail.created_at %></td>
+        <th class="col-4">Name</th>
+        <th class="col-4">Amount</th>
+        <th class="col-4">Created At</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @transaction_details.each do |transaction_detail| %>
+        <tr>
+          <td class="col-4"><%= transaction_detail.name %></td>
+          <td class="col-4"><%= number_to_currency(transaction_detail.amount) %></td>
+          <td class="col-4"><%= transaction_detail.created_at %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <% if @category.present? %>
-  <div class="p-2 d-flex justify-content-center" style="background-color:#5fb523">
-    <%= link_to "Add a new transaction", new_category_transaction_detail_path(@category), class: "btn btn-outline-primary" %>
-    <%= link_to "Back to Categories", categories_path, class: "btn btn-outline-primary" %>
+  <div class="row">
+    <div class="col-6">
+      <h6 style="margin-left: 0.5rem; font-weight: bold;">TOTAL AMOUNT:</h6>
+    </div>
+    <div class="col-6 text-end">
+      <p style="margin-right: 2rem; font-weight: bold;"><%= number_to_currency(@total_amount) %></p>
+    </div>
   </div>
 <% end %>
 
+  <% if @category.present? %>
+    <div class="p-2 d-flex justify-content-center" style="background-color:#5fb523">
+      <div style="margin-right: 2rem">
+        <%= link_to "Add a new transaction", new_category_transaction_detail_path(@category), class: "btn btn-outline-light" %>
+      </div>
+      <div>
+        <%= link_to "Back to Categories", categories_path, class: "btn btn-outline-dark" %>
+      </div>
+    </div>
+  <% end %>
+</div>
