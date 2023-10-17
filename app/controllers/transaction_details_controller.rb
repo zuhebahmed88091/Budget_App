@@ -23,7 +23,7 @@ class TransactionDetailsController < ApplicationController
     amount = params[:transaction_detail][:amount]
 
     @category = Category.find_by(name: category_params)
-    @transaction_detail = current_user.transaction_details.build(name: name, amount: amount)
+    @transaction_detail = current_user.transaction_details.build(name:, amount:)
     @category.transaction_details << @transaction_detail
     if @category.save
       redirect_to category_transaction_details_path(@category)
