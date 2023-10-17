@@ -36,5 +36,5 @@ class TransactionDetailsController < ApplicationController
 
   def transaction_detail_params
     params.require(:transaction_detail).permit(:name, :amount).merge(category: params[:transaction_detail][:category])
-    end
+  end
 end
