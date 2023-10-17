@@ -15,7 +15,7 @@ RSpec.describe Category, type: :model do
     end
 
     it 'is not valid without a user' do
-        category = Category.new(
+      category = Category.new(
         name: 'Sample Category',
         icon: 'category-icon.png',
         amount: 250.0
