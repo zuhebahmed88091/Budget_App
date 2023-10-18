@@ -54,10 +54,10 @@
   <% if @category.present? %>
     <div class="p-2 d-flex justify-content-center" style="background-color:#5fb523">
       <div style="margin-right: 2rem">
-        <%= link_to "Add a new transaction", new_category_transaction_detail_path(@category), class: "btn btn-outline-light" %>
+        <%= link_to "New transaction", new_category_transaction_detail_path(@category), class: "btn btn-outline-light" %>
       </div>
       <div>
-        <%= link_to "Back to Categories", categories_path, class: "btn btn-outline-dark" %>
+        <%= link_to "Previous page", categories_path, class: "btn btn-outline-dark" %>
       </div>
     </div>
   <% end %>
