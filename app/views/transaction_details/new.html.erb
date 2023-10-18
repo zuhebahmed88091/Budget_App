@@ -1,0 +1,40 @@
+<div class="p-2 m-2">
+  <%= form_with(model: [ @category, @transaction_detail], local: true) do |form| %>
+    <% if @transaction_detail.errors.any? %>
+      <div>
+        <h2><%= pluralize(@category.errors.count, "error") %> prohibited this tran_group from being saved:</h2>
+        <ul>
+          <% @category.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="form-group">
+      <%= form.label :name, class: "control-label" %>
+      <%= form.text_field :name, class: "form-control", style: "width: 300px; border: 1px solid #000;" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :amount, class: "control-label" %>
+      <%= form.number_field :amount, class: "form-control", style: "width: 300px; border: 1px solid #000;" %>
+    </div>
+
+    <div class="form-group" style="margin-top: 1rem;">
+      <%= form.label :category, class: "control-label" %>
+      <%= form.collection_select :category, @categories, :name, :name, prompt: "Select a category", class: "form-control", required: true %>
+    </div>
+
+
+    <br />
+
+    <div class="p-2 d-flex justify-content-center" style="background-color: #5fb523">
+      <div>
+        <%= form.submit "Create Transaction", class: "btn btn-outline-light" %>
+      </div>
+      <div style= "margin-left: 1rem;">
+        <%= link_to "Previous page", category_transaction_details_path(category_id: params[:category_id]), class: "btn btn-outline-dark" %>
+      </div>
+    </div>
+  <% end %>
+</div>
