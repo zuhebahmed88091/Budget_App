@@ -13,11 +13,18 @@
             </span>
           </li>
         <% else %>
+          <li class="nav-item ml-auto">
             <span class="nav-link">
-                SpendSmartly
+              SpendSmartly
             </span>
+          </li>
         <% end %>
       </ul>
     </div>
+    <% if user_signed_in? %>
+      <div>
+        <h3 style="font-family: 'Arial', sans-serif; font-weight: bold; text-align: center;">Logged in as <%= current_user.username %></h3>
+      </div>
+    <% end %>
   </div>
 </nav>

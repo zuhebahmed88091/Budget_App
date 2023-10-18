@@ -29,11 +29,11 @@
     <br />
 
     <div class="p-2 d-flex justify-content-center" style="background-color: #5fb523">
-      <div style="margin-right: 2rem">
+      <div>
         <%= form.submit "Create Transaction", class: "btn btn-outline-light" %>
       </div>
-      <div>
-        <%= link_to "Back to Transactions", category_transaction_details_path(category_id: params[:category_id]), class: "btn btn-outline-dark" %>
+      <div style= "margin-left: 1rem;">
+        <%= link_to "Previous page", category_transaction_details_path(category_id: params[:category_id]), class: "btn btn-outline-dark" %>
       </div>
     </div>
   <% end %>
